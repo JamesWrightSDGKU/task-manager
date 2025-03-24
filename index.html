@@ -13,26 +13,27 @@
             <div class="pendingTask">
                 <!-- task should be rendered here -->
             </div>
+            <button class="btn btn-danger" id="btnDelete">Delete All Tasks</button>
         </section>
         <section id="form">
             <div class="mt-3">
-                <label class="form-label">Title</label>
+                <label for="txtTitle" class="form-label">Title</label>
                 <input type="text" class="form-control" id="txtTitle">
             </div>
             <div class="mt-3">
-                <label class="form-label">Description</label>
+                <label for="txtDescription" class="form-label">Description</label>
                 <textarea rows="3" class="form-control" id="txtDescription"></textarea>
             </div>
             <div class="mt-3">
-                <label class="form-label">Color</label>
+                <label for="selColor" class="form-label">Color</label>
                 <input type="color" class="form-control" id="selColor">
             </div>
             <div class="mt-3">
-                <label class="form-label">Date</label>
+                <label for="selDate" class="form-label">Date</label>
                 <input type="datetime-local" class="form-control" id="selDate">
             </div>
             <div class="mt-3">
-                <label class="form-label">Status</label>
+                <label for="selStatus" class="form-label">Status</label>
                 <select class="form-control" id="selStatus">
                     <option>New</option>
                     <option>In progress</option>
@@ -41,7 +42,7 @@
                 </select>
             </div>
             <div class="mt-3">
-                <label class="form-label">Budget</label>
+                <label for="numBudget" class="form-label">Budget</label>
                 <input type="number" class="form-control" id="numBudget">
             </div>
             <div>
