@@ -33,18 +33,17 @@ function saveTask(){
     displayTask(taskToSave);
 }
 
-function loadTask(){
-    
+function loadTask(){    
     $.ajax({
         type: "GET",
-        url: "http://fsdiapi.azurewebsites.net/api/tasks",
+        url: "http://fsdiapi.azurewebsites.net/api/tasks/",
         success: function(response){
             console.log(response);
             let data = JSON.parse(response);
             console.log(data);
             for(let i=0; i<data.length; i++){
                 let task = data[i];
-                if(task.name == "James")
+                if(task.name === "James")
                 {
                     displayTask(task);
                 }
@@ -74,23 +73,27 @@ function displayTask(task){
     $(".pendingTask").append(syntax);
 }
 
-function deleteTasks(task){
-    $.ajax({
-        type: "DELETE",
-        url: "http://fsdiapi.azurewebsites.net",
-        success: function (response)
-    })
-}
-
-function testRequests(){
+function deleteTasks(){
     $.ajax({
         type: "GET",
-        url: "http://fsdiapi.azurewebsites.net",
-        success: function (response){
-            console.log(response);
-        },
-        error: function(error){
-            console.log(error);
+        url: "http://fsdiapi.azurewebsites.net/api/tasks/",
+        success: function (response) {
+            let allTasks = JSON.parse(response);
+
+            const tasksToDelete = allTasks.filter((task) => task.name === "James");
+
+            $.ajax({
+                type: "DELETE",
+                url: "http://fsdiapi.azurewebsites.net/api/tasks/",
+                data: JSON.stringify(tasksToDelete),
+                contentType: "application/json",
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function(response) {
+                    console.log(error);
+                }
+            });
         }
     });
 }
@@ -104,6 +107,5 @@ function init(){
     $("#btnSave").click(saveTask);
     $("#btnDelete").click(deleteTasks);
 }
-// new code change
 
 window.onload=init;
